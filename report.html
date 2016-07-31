@@ -537,7 +537,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Extract feature columns</span>
@@ -619,7 +619,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -690,7 +690,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -705,7 +705,7 @@ Feature values:
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
-    <span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">train_size</span> <span class="o">=</span> <span class="n">num_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">num_test</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">train_size</span> <span class="o">=</span> <span class="n">num_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">num_test</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stratify</span> <span class="o">=</span> <span class="n">y_all</span><span class="p">)</span>
 
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -771,6 +771,7 @@ Testing set has 95 samples.
 <ul>
 <li>general applications: <ul>
 <li>Logistic Regression assumes there is one smooth linear decision boundary</li>
+<li>used for Credit Scoring, Measuring the success rates of marketing campaigns</li>
 </ul>
 </li>
 <li>strengths:<ul>
@@ -782,12 +783,17 @@ Testing set has 95 samples.
 <li>weak prediction</li>
 </ul>
 </li>
+<li>Why I chose this model<ul>
+<li>Very good for starting model because of its simplicity. </li>
+<li>To see if the data is linearly separable. If linear Regression works well, that might mean data set is linearly separable.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>NB</p>
 <ul>
 <li>general applicaions:<ul>
-<li>classifications(spam filtering and etc)</li>
+<li>used for email spam detection and etc. </li>
 <li>It assumes that the parameters of given data are all independent to each other. </li>
 </ul>
 </li>
@@ -800,13 +806,21 @@ Testing set has 95 samples.
 <li>weak prediction</li>
 </ul>
 </li>
+<li>Why I chose this model<ul>
+<li>very good for starting mode because of its simplicity. </li>
+<li>To see if the data features are independent to each other. If NB works well, that might mean independence of the given features</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
 <p><font color='blue'>For more advanced prediction</font></p>
 <ol>
 <li>SVM(SVC)<ul>
-<li>general applicaions: </li>
+<li>general applicaions: <ul>
+<li>used for image classiciation / handwriting recognition</li>
+</ul>
+</li>
 <li>strengths: <ul>
 <li>Effective in high dimensional spaces. </li>
 <li>Since we can use different kernels, it is versatile. </li>
@@ -818,11 +832,17 @@ Testing set has 95 samples.
 <li>choosing right kernel can take time and efforts. </li>
 </ul>
 </li>
+<li>Why I chose this model<ul>
+<li>We have relatively small dataset, and SVM works well with the small dataset. </li>
+<li>When LR or NB fails, SVM would be my next choice of testing dataset. </li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Decision Tree<ul>
 <li>general applications:<ul>
 <li>assumes data could be divided in hyper rectangles</li>
+<li>used for option pricing, Business Management and such</li>
 </ul>
 </li>
 <li>strengths<ul>
@@ -838,6 +858,11 @@ Testing set has 95 samples.
 <li>weak prediction</li>
 </ul>
 </li>
+<li>Why I chose this model<ul>
+<li>works well when there are lots of features </li>
+<li>simple to implement</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -846,6 +871,7 @@ Testing set has 95 samples.
 <li>Random Forest<ul>
 <li>general applications:<ul>
 <li>many kaggle solutions use Random Forest</li>
+<li>used for Customer Relationship Management</li>
 </ul>
 </li>
 <li>strengths<ul>
@@ -858,16 +884,9 @@ Testing set has 95 samples.
 <li>training cost is higher </li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Voting<ul>
-<li>general applications</li>
-<li>strengths<ul>
-<li>it uses all different algorithms to predict, so it gives better prediction</li>
-</ul>
-</li>
-<li>weakness<ul>
-<li>training cost is higher</li>
+<li>Why I chose this model<ul>
+<li>Random Forest is almost always better then a simple Decision tree</li>
+<li>good prediction performance</li>
 </ul>
 </li>
 </ul>
@@ -897,7 +916,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -970,7 +989,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -981,11 +1000,13 @@ Testing set has 95 samples.
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_LR</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">my_random_state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="n">clf_LR</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">my_random_state</span><span class="p">)</span>
 <span class="n">clf_NB</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">clf_SCV</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
-<span class="n">clf_DT</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf_RF</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">clf_SCV</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">my_random_state</span><span class="p">)</span>
+<span class="n">clf_DT</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">my_random_state</span><span class="p">)</span>
+<span class="n">clf_RF</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">my_random_state</span><span class="p">)</span>
 
 <span class="c1"># TODO: Set up the training set sizes</span>
 <span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
@@ -1059,119 +1080,119 @@ Testing set has 95 samples.
 Training a LogisticRegression using a training set size of 100. . .
 Trained model in 0.0015 seconds
 Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8571.
+F1 score for training set: 0.8759.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7612.
+F1 score for test set: 0.7500.
 ############# LR with 200 training set #############
 Training a LogisticRegression using a training set size of 200. . .
-Trained model in 0.0023 seconds
-Made predictions in 0.0003 seconds.
-F1 score for training set: 0.8380.
+Trained model in 0.0022 seconds
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7794.
+F1 score for training set: 0.8532.
+Made predictions in 0.0002 seconds.
+F1 score for test set: 0.8085.
 ############# LR with 300 training set #############
 Training a LogisticRegression using a training set size of 300. . .
-Trained model in 0.0034 seconds
+Trained model in 0.0033 seconds
 Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8381.
+F1 score for training set: 0.8402.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7910.
+F1 score for test set: 0.7770.
 
 
 &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;        GaussianNB         &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;
 #############  NB with 100 training set #############
 Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0009 seconds
-Made predictions in 0.0004 seconds.
-F1 score for training set: 0.8550.
-Made predictions in 0.0004 seconds.
-F1 score for test set: 0.7481.
+Trained model in 0.0008 seconds
+Made predictions in 0.0003 seconds.
+F1 score for training set: 0.5833.
+Made predictions in 0.0003 seconds.
+F1 score for test set: 0.5161.
 #############  NB with 200 training set #############
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0010 seconds
+Trained model in 0.0009 seconds
 Made predictions in 0.0004 seconds.
-F1 score for training set: 0.8321.
+F1 score for training set: 0.8118.
 Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7132.
+F1 score for test set: 0.7576.
 #############  NB with 300 training set #############
 Training a GaussianNB using a training set size of 300. . .
 Trained model in 0.0010 seconds
 Made predictions in 0.0005 seconds.
-F1 score for training set: 0.8088.
+F1 score for training set: 0.8000.
 Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7500.
+F1 score for test set: 0.7273.
 
 
 &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;            SVC            &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;
 ############# SVM with 100 training set #############
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0014 seconds
-Made predictions in 0.0010 seconds.
-F1 score for training set: 0.8591.
-Made predictions in 0.0009 seconds.
-F1 score for test set: 0.7838.
+Trained model in 0.0013 seconds
+Made predictions in 0.0008 seconds.
+F1 score for training set: 0.8919.
+Made predictions in 0.0008 seconds.
+F1 score for test set: 0.7737.
 ############# SVM with 200 training set #############
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0040 seconds
-Made predictions in 0.0030 seconds.
-F1 score for training set: 0.8693.
-Made predictions in 0.0015 seconds.
-F1 score for test set: 0.7755.
+Trained model in 0.0038 seconds
+Made predictions in 0.0026 seconds.
+F1 score for training set: 0.8795.
+Made predictions in 0.0013 seconds.
+F1 score for test set: 0.8182.
 ############# SVM with 300 training set #############
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0079 seconds
-Made predictions in 0.0059 seconds.
-F1 score for training set: 0.8692.
+Trained model in 0.0075 seconds
+Made predictions in 0.0069 seconds.
+F1 score for training set: 0.8664.
 Made predictions in 0.0019 seconds.
-F1 score for test set: 0.7586.
+F1 score for test set: 0.8289.
 
 
 &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;  DecisionTreeClassifier   &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;
 #############  DT with 100 training set #############
 Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0008 seconds
+Trained model in 0.0007 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6838.
+F1 score for test set: 0.6984.
 #############  DT with 200 training set #############
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0013 seconds
+Trained model in 0.0012 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7597.
+F1 score for test set: 0.6833.
 #############  DT with 300 training set #############
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0019 seconds
+Trained model in 0.0017 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6786.
+F1 score for test set: 0.7031.
 
 
 &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;  RandomForestClassifier   &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;
 #############  RF with 100 training set #############
 Training a RandomForestClassifier using a training set size of 100. . .
-Trained model in 0.0199 seconds
+Trained model in 0.0191 seconds
+Made predictions in 0.0010 seconds.
+F1 score for training set: 0.9924.
 Made predictions in 0.0009 seconds.
-F1 score for training set: 0.9922.
-Made predictions in 0.0009 seconds.
-F1 score for test set: 0.8000.
+F1 score for test set: 0.6885.
 #############  RF with 200 training set #############
 Training a RandomForestClassifier using a training set size of 200. . .
-Trained model in 0.0192 seconds
-Made predictions in 0.0011 seconds.
-F1 score for training set: 0.9925.
+Trained model in 0.0188 seconds
+Made predictions in 0.0013 seconds.
+F1 score for training set: 0.9926.
 Made predictions in 0.0009 seconds.
-F1 score for test set: 0.7407.
+F1 score for test set: 0.7164.
 #############  RF with 300 training set #############
 Training a RandomForestClassifier using a training set size of 300. . .
-Trained model in 0.0188 seconds
-Made predictions in 0.0011 seconds.
-F1 score for training set: 0.9832.
+Trained model in 0.0184 seconds
+Made predictions in 0.0012 seconds.
+F1 score for training set: 0.9975.
 Made predictions in 0.0009 seconds.
-F1 score for test set: 0.7634.
+F1 score for test set: 0.7273.
 </pre>
 </div>
 </div>
@@ -1210,22 +1231,22 @@ F1 score for test set: 0.7634.
 <td style="text-align:center">100</td>
 <td style="text-align:center">0.0002</td>
 <td style="text-align:center">0.0002</td>
-<td style="text-align:center">0.8571</td>
-<td style="text-align:center">0.7612</td>
+<td style="text-align:center">0.8759</td>
+<td style="text-align:center">0.7500</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
 <td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.8380</td>
-<td style="text-align:center">0.7794</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.8532</td>
+<td style="text-align:center">0.8085</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.8381</td>
-<td style="text-align:center">0.7910</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.8402</td>
+<td style="text-align:center">0.7770</td>
 </tr>
 </tbody>
 </table>
@@ -1242,24 +1263,24 @@ F1 score for test set: 0.7634.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0005</td>
-<td style="text-align:center">0.0005</td>
-<td style="text-align:center">0.8550</td>
-<td style="text-align:center">0.7481</td>
+<td style="text-align:center">0.0004</td>
+<td style="text-align:center">0.0004</td>
+<td style="text-align:center">0.5833</td>
+<td style="text-align:center">0.5161</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
 <td style="text-align:center">0.0006</td>
-<td style="text-align:center">0.0005</td>
-<td style="text-align:center">0.8321</td>
-<td style="text-align:center">0.7132</td>
+<td style="text-align:center">0.0003</td>
+<td style="text-align:center">0.8118</td>
+<td style="text-align:center">0.7576</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0007</td>
-<td style="text-align:center">0.0005</td>
-<td style="text-align:center">0.8088</td>
-<td style="text-align:center">0.7500</td>
+<td style="text-align:center">0.0006</td>
+<td style="text-align:center">0.0004</td>
+<td style="text-align:center">0.8000</td>
+<td style="text-align:center">0.7273</td>
 </tr>
 </tbody>
 </table>
@@ -1276,24 +1297,24 @@ F1 score for test set: 0.7634.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0014</td>
-<td style="text-align:center">0.0013</td>
-<td style="text-align:center">0.8591</td>
-<td style="text-align:center">0.7838</td>
+<td style="text-align:center">0.0008</td>
+<td style="text-align:center">0.0008</td>
+<td style="text-align:center">0.8919</td>
+<td style="text-align:center">0.7737</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0043</td>
-<td style="text-align:center">0.0022</td>
-<td style="text-align:center">0.8693</td>
-<td style="text-align:center">0.7755</td>
+<td style="text-align:center">0.0025</td>
+<td style="text-align:center">0.0013</td>
+<td style="text-align:center">0.8795</td>
+<td style="text-align:center">0.8182</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0114</td>
-<td style="text-align:center">0.0036</td>
-<td style="text-align:center">0.8692</td>
-<td style="text-align:center">0.7586</td>
+<td style="text-align:center">0.0055</td>
+<td style="text-align:center">0.0018</td>
+<td style="text-align:center">0.8664</td>
+<td style="text-align:center">0.8289</td>
 </tr>
 </tbody>
 </table>
@@ -1310,24 +1331,24 @@ F1 score for test set: 0.7634.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.0003</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.0001</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.6555</td>
+<td style="text-align:center">0.7143</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0003</td>
-<td style="text-align:center">0.0003</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.0002</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7424</td>
+<td style="text-align:center">0.7059</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0004</td>
-<td style="text-align:center">0.0004</td>
+<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.0002</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7018</td>
+<td style="text-align:center">0.7031</td>
 </tr>
 </tbody>
 </table>
@@ -1344,24 +1365,24 @@ F1 score for test set: 0.7634.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0014</td>
-<td style="text-align:center">0.0014</td>
-<td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7200</td>
+<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0009</td>
+<td style="text-align:center">0.9846</td>
+<td style="text-align:center">0.7402</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0014</td>
-<td style="text-align:center">0.0013</td>
-<td style="text-align:center">0.9888</td>
-<td style="text-align:center">0.7500</td>
+<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0009</td>
+<td style="text-align:center">0.9889</td>
+<td style="text-align:center">0.7463</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0015</td>
-<td style="text-align:center">0.0011</td>
-<td style="text-align:center">0.9976</td>
-<td style="text-align:center">0.7445</td>
+<td style="text-align:center">0.0012</td>
+<td style="text-align:center">0.0009</td>
+<td style="text-align:center">0.9975</td>
+<td style="text-align:center">0.6870</td>
 </tr>
 </tbody>
 </table>
@@ -1395,9 +1416,8 @@ F1 score for test set: 0.7634.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>According to the test above, Linear Regression gives the best performance. 
-However, svc with default kernel(linear kernel) performs poorly, and that seems odd, since svm with linear kernel should be same as linear regression.Also, not like linear regression where it gives better predictions with more training data, 
-other algorithms do worse with more training data. To see if that is training data problem, I changed the random state when I shuffled the data. Then the F1 scores of algorithms changed dramatically. I guess that is because of the small size of the training data. It is hard to decide what model to choose with above test, since it gives me little information of the dataset</p>
+<p>According to the test above, SVM gives the best performance. 
+However, linear regression performs poorly, and that seems odd, since svm with linear kernel should be same as linear regression. Also, some algorithms do worse with more training data. To see if that is training data problem, I changed the random state when I shuffled the data. Then the F1 scores of algorithms changed dramatically. I guess that is because of the small size of the training data. It is hard to decide what model to choose with above test, since it gives me little information of the dataset</p>
 <p>Conclustion</p>
 <ol>
 <li>I will choose SVC since dataset is relatively small. SVC would be good choice with small dataset.  </li>
@@ -1462,7 +1482,7 @@ other algorithms do worse with more training data. To see if that is training da
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># TODO: Import &#39;gridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -1477,7 +1497,7 @@ other algorithms do worse with more training data. To see if that is training da
     <span class="p">}</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">my_random_state</span><span class="p">)</span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
@@ -1506,10 +1526,10 @@ other algorithms do worse with more training data. To see if that is training da
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0040 seconds.
-Tuned model has a training F1 score of 0.8434.
-Made predictions in 0.0014 seconds.
-Tuned model has a testing F1 score of 0.7862.
+<pre>Made predictions in 0.0055 seconds.
+Tuned model has a training F1 score of 0.9805.
+Made predictions in 0.0018 seconds.
+Tuned model has a testing F1 score of 0.8153.
 </pre>
 </div>
 </div>
@@ -1533,7 +1553,7 @@ Tuned model has a testing F1 score of 0.7862.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong></p>
+<p>0055<strong>Answer: </strong></p>
 <table>
 <thead><tr>
 <th style="text-align:center">Training Set Size</th>
@@ -1546,15 +1566,15 @@ Tuned model has a testing F1 score of 0.7862.
 <tbody>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0040</td>
-<td style="text-align:center">0.0014</td>
-<td style="text-align:center">0.8434</td>
-<td style="text-align:center">0.7862</td>
+<td style="text-align:center">0.0055</td>
+<td style="text-align:center">0.0018</td>
+<td style="text-align:center">0.9805</td>
+<td style="text-align:center">0.8153</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>Tuned model is little bit better then untuned one, there is no big improvement. </li>
+<li>Tuned model is doing worse then untuned one, there is no big improvement. </li>
 <li>I think I need to look into the data more</li>
 </ul>
 
@@ -1585,7 +1605,7 @@ Tuned model has a testing F1 score of 0.7862.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># TODO: Import &#39;gridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -1601,7 +1621,7 @@ Tuned model has a testing F1 score of 0.7862.
     <span class="p">}</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">my_random_state</span><span class="p">)</span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
@@ -1630,10 +1650,10 @@ Tuned model has a testing F1 score of 0.7862.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0081 seconds.
+<pre>Made predictions in 0.0084 seconds.
 Tuned model has a training F1 score of 1.0000.
-Made predictions in 0.0062 seconds.
-Tuned model has a testing F1 score of 0.7917.
+Made predictions in 0.0065 seconds.
+Tuned model has a testing F1 score of 0.7801.
 </pre>
 </div>
 </div>
@@ -1663,12 +1683,12 @@ Tuned model has a testing F1 score of 0.7917.
 <td style="text-align:center">0.0081</td>
 <td style="text-align:center">0.0062</td>
 <td style="text-align:center">01.0000</td>
-<td style="text-align:center">0.7917</td>
+<td style="text-align:center">0.7801</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>Random Forest gives small improvements, but no big improvement</li>
+<li>SVM is better than Random Forest</li>
 </ul>
 
 </div>
